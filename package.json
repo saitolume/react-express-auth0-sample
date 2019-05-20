@@ -1,0 +1,13 @@
+{
+  "name": "react-express-auth0-sample",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "backend:start": "yarn workspace backend start",
+    "frontend:start": "yarn workspace frontend start"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
