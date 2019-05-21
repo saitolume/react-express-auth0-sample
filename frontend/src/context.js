@@ -11,9 +11,9 @@ const initialState = {
 const SET_USER = 'SET_USER'
 
 export const setUser = async dispatch => {
+  const userId = getUserId()
   try {
-    const userId = await getUserId()
-    const { data } = await await axios.get(`/api/users/${userId}`)
+    const { data } = await axios.get(`/api/users/${userId}`)
     dispatch({
       type: SET_USER,
       payload: {

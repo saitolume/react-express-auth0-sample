@@ -1,5 +1,5 @@
 import auth0 from 'auth0-js'
-import axios from './axios'
+import jwtDecode from 'jwt-decode'
 
 const webAuth = new auth0.WebAuth({
   domain: process.env.REACT_APP_AUTH0_DOMAIN,
@@ -14,13 +14,9 @@ export const authorizeWithTwitter = async () => {
   webAuth.authorize({ connection: 'twitter' })
 }
 
-export const getUserId = async () => {
-  try {
-    const { data } = await axios.get(`https://${process.env.REACT_APP_AUTH0_DOMAIN}/userinfo`)
-    return data.sub
-  } catch (err) {
-    console.error(err)
-  }
+export const getUserId = () => {
+  const { sub } = jwtDecode(localStorage.getItem('accessToken'))
+  return sub
 }
 
 export const parseHash = () =>
